@@ -1,7 +1,6 @@
 #!/usr/bin/python
 from numpy import *
 from scipy import linalg as la
-from scipy.sparse import linalg as spla
 
 ######################## L_Solve #########################
 ## solves (A + sigma I)X = B using results from L_Seed) ##
@@ -11,8 +10,8 @@ def L_Solve(
         B: ndarray,        # RHS
         σ: float,          # shift >=0
         tol = 5e-3,        # absolute tolerance for CG
-        verbose= False,     # verbose output
-        p_freq = 5        # print frequency (if verbose)
+        verbose= False,    # verbose output
+        p_freq = 5         # print frequency (if verbose)
     ) -> ndarray:
 
     U = seedSystem["U"]

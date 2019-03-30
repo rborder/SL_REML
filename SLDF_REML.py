@@ -7,22 +7,21 @@ from scipy.sparse import linalg as spla
 from L_Seed import L_Seed
 from SLQ_LDet import SLQ_LDet
 from L_Solve import L_Solve
-
 import pytictoc
 
 
-############################# Z_SL_REML ##############################
+############################# SLDF_REML ##############################
 ## zero order REML estimation using (shifted) Lanczos conjugate     ##
 ## gradients and (shifted) stochastic Lanczos quadrature            ##
 ######################################################################
-def L_DF_REML_2(
+def SLDF_REML(
     Z,               # standardized genotype matrix
     X: ndarray,      # covariate matrix
     y: ndarray,      # phenotype vector
     m: int,          # number of markers
     ZZ = False,      # (optional) precomputed GRM
     s2max = .7,      # maximal heritable VC value
-    s2min = .1,       # maximal heritable VC value
+    s2min = .1,      # minimal heritable VC value
     n_V = 15,        # number of random probes
     tol_L = 1e-9,    # abs. lanczos tolerance
     tol_VC = 1e-5,   # abs. var. component tolerance
@@ -40,10 +39,6 @@ def L_DF_REML_2(
     ## extract needed dimensions
     n,c = X.shape
 
-    ## standardized covariates
-    X = apply_along_axis(scale,0,X)
-
-
     ## construct implicit GRM if needed,
     ## ensuring division by m occurs after matvecs
     if isinstance(ZZ, bool):
@@ -55,22 +50,10 @@ def L_DF_REML_2(
         ZZ_proj = spla.LinearOperator((n,n), matmat = ZZ_mv, matvec = ZZ_mv)
         grmPrecomputed = True
 
-    X2 = apply_along_axis(scale,0,X)
     ## qr decomposition of covariate matrix
     Q = la.qr(X, mode = "economic")[0]
-    U = la.svd(X,full_matrices=False)[0]
-    U2 = la.svd(X,full_matrices=True)[0][:,c:n]
-
+    ## apply projection to phenotype vector
     y_proj = y - Q @ (Q.T @ y)
-    y_proj2 = y - U @ (U.T @ y)
-    y_proj3 = U2.T @ y
-
-    print(var(y_proj2)  /  var(y_proj3))
-    rat = sqrt((n-c)**2 / n**2)
-
-    ## project covariates out of phenotype
-
-    y_proj = (y - Q @ (Q.T @ y))
 
     ## sample normalized Rademacher probing vetors
     random.seed(seed)
@@ -117,7 +100,7 @@ def L_DF_REML_2(
         v_g = v_e/τ
         s2 = v_g/(v_g+v_e)
 
-        ldet = npla.slogdet(X.T @ L_Solve(seed_X, X, σ))[1] + SLQ_LDet(D_V, W_V, n, n_V, σ)+(n-c)*log(v_e)-(m-c)*log(τ)
+        ldet = npla.slogdet(X.T @ L_Solve(seed_X, X, σ))[1] + SLQ_LDet(D_V, W_V, n, n_V, σ)+(n-c)*log(v_e)-(n-c)*log(τ)
 
         print("heritability estimate: ", s2)
         return ldet + yPy/v_e
@@ -135,7 +118,7 @@ def L_DF_REML_2(
         mainloop = TT.tocvalue() - overhead  ## subsequent iteration timing
         if not isinstance(seed, int): seed = -1
         return {'soln':s2,
-                'method':"L_DF_REML_2",
+                'method':"L_DF_REML_1",
                 'nIteration':output[3],
                 'overhead':overhead,
                 'mainloop':mainloop,

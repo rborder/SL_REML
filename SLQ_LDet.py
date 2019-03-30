@@ -1,11 +1,7 @@
 #!/usr/bin/python
 from numpy import *
-from scipy import linalg as la
-from scipy.sparse import linalg as spla
 
-
-
-######################## SLQ_LDET #################################
+######################## SLQ_LDet #################################
 ## returns approximate log det (A + σI) given spectral           ##
 ## decompositions of Jacobi matrices from Lanczos decompositions ##
 ## of seed Krylov subspaces for probes                           ##

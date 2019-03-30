@@ -5,14 +5,13 @@ from scipy import optimize as opt
 from scipy.sparse import linalg as spla
 from L_Seed import L_Seed
 from L_Solve import L_Solve
-
 import pytictoc
 
-##################### L_MCNR_REML ########################################
-## extension of MCNR_REML to recycle Krylov subspace bases involved in  ##
-## solving linear systems                                               ##
+############################ L_FOMC_REML #################################
+## extension of BOLT-LMM algorithm to recycle Krylov subspace bases     ##
+## involved in solving linear systems                                   ##
 ##########################################################################
-def L_MCNR_REML(
+def L_FOMC_REML(
     Z: ndarray,      # standardized genotype matrix / sqrt(m)
     X: ndarray,      # covariate matrix
     y: ndarray,      # phenotype vector
