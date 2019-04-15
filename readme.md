@@ -1,6 +1,6 @@
 # Stochastic Lanczos REML algorithms
 
-Code accompanying _Stochastic Lanczos estimation of genomic variance components for linear mixed-effects models_.
+Code accompanying _[Stochastic Lanczos estimation of genomic variance components for linear mixed-effects models](https://doi.org/10.1101/607168)_.
 
 
  - `L_Seed` constructs bases for Krylov subspaces:  B, (A+σI)B, (A+σI)²B, ...
