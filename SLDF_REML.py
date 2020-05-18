@@ -102,7 +102,7 @@ def SLDF_REML(
 
         ldet = npla.slogdet(X.T @ L_Solve(seed_X, X, σ))[1] + SLQ_LDet(D_V, W_V, n, n_V, σ)+(n-c)*log(v_e)-(n-c)*log(τ)
 
-        print("heritability estimate: ", s2)
+        if verbose: print("heritability estimate: ", s2)
         return ldet + yPy/v_e
 
 
