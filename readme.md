@@ -7,7 +7,7 @@ Code accompanying _[Stochastic Lanczos estimation of genomic variance components
 
  - `L_Solve` solves (A + σI)X = B using results from `L_Seed`
 
- - `SLQ_LDet` returns approximate log det (A + σI) given spectal decompositions of Jacobi matrices from Lanczos decompositions of seed Krylov subspaces for prob vectors
+ - `SLQ_LDet` returns approximate log det (A + σI) given spectal decompositions of Jacobi matrices from Lanczos decompositions of seed Krylov subspaces for probe vectors
 
  - `L_FOMC_REML` extension of BOLT-LMM algorithm to recycle Krylov subspace bases involved in solving linear systems
 
