@@ -25,5 +25,5 @@ High performance variant of Stochastic First-order Derivative-Free REML algorith
  
  - `SLDF_REML_numba` compiled variant of `SLDF_REML` above
  
-In contrast to `SLDF_REML`, `SLDF_REML_numba` assumes all covariates have been projected out of the genotype and phenotype data
+In contrast to `SLDF_REML`, `SLDF_REML_numba` assumes all covariates have been projected out of the genotype and phenotype data. See the `SL_REML_v0.1b` directory for installation instructions and a toy example.
 
