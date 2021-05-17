@@ -46,7 +46,7 @@ h2est = SLDF_REML(ZZ,Y,1, tol_L=np.float32(3e-4),tol_VC = np.float32(3e-4))
 
 ## Dependencies
 
-All required dependencies can be installed using `pip` or `conda`:
+Installation consists of installing dependences only.  Assuming python3 is present, all required dependencies can be installed in a few minutes using `pip` or `conda`:
 
  - `numba` v0.49.1+
  - `numpy` v1.18.4+
