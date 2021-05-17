@@ -48,8 +48,12 @@ h2est = SLDF_REML(ZZ,Y,1, tol_L=np.float32(3e-4),tol_VC = np.float32(3e-4))
 
 All required dependencies can be installed using `pip` or `conda`:
 
-- `numba` v0.49.1+
-- `numpy` v1.18.4+
-- `scipy` v1.4.1+
-- `tbb` v2020.0.133+
-- `pytictoc` v1.4.0+
+ - `numba` v0.49.1+
+ - `numpy` v1.18.4+
+ - `scipy` v1.4.1+
+ - `tbb` v2020.0.133+
+ - `pytictoc` v1.4.0+
+
+This software has been confirmed to work on
+ - Ubuntu 18.04.5 LTS x86_64 with kernel 5.4.0-72-generic
+ - Red Hat Enterprise Linux v7.6 x86_64 with kernel: 3.10.0-957.21.3.el7
