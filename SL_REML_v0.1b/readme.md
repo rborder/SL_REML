@@ -1,6 +1,7 @@
 
 ## Toy example demonstrating application of `SLDF_REML_numba` 
 
+The following toy example creates a set of genotype/phenotype data and performs heritability analysis. 
 
 ```python3
 import numpy as np
@@ -41,7 +42,17 @@ Y = Y - Q @ (Q.T @ Y)
 Z = Z - Q @ (Q.T @ Z)
 ZZ = Z @ Z.T
 
+## run SLDF_REML
 h2est = SLDF_REML(ZZ,Y,1, tol_L=np.float32(3e-4),tol_VC = np.float32(3e-4))
+
+## expected output:
+# Error at step  5  is  0.27301764488220215
+# heritability estimate:  0.37634504769225857
+#     9       0.376345     -961.426        parabolic
+# 
+# Optimization terminated successfully;
+# The returned value satisfies the termination criteria
+# (using xtol =  0.0003 )
 ```
 
 ## Dependencies
