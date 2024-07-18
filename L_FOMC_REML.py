@@ -12,13 +12,13 @@ import pytictoc
 ## involved in solving linear systems                                   ##
 ##########################################################################
 def L_FOMC_REML(
-    Z: ndarray,      # standardized genotype matrix / sqrt(m)
+    Z: ndarray,      # standardized genotype matrix
     X: ndarray,      # covariate matrix
     y: ndarray,      # phenotype vector
     nMC = 15,        # number of MC samples
     s2max = .7,      # maximal heritable VC value
     ZZ = False,      # optional precomputed relatedness matrix
-    maxIter = 15,  # max secant iterations
+    maxIter = 15,    # max secant iterations
     tol_L = 5e-3,    # abs. lanczos tolerance
     tol_VC = 1e-5,   # abs. var. component tolerance
     verbose = True,  # verbose output
